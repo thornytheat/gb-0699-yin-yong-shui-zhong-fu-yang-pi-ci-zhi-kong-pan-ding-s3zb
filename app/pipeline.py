@@ -7,6 +7,7 @@ from app.modules.m4_spikes.rules import apply as stage4
 from app.modules.m5_blanks.rules import apply as stage5
 from app.modules.m6_release.rules import apply as stage6
 from app.modules.m7_retest.rules import apply as stage7
+from app.modules.m8_correction.rules import apply as stage8
 
 def sample_text():
     return (Path(__file__).parent.parent/"sample_data"/"instrument.csv").read_text(encoding="utf-8-sig")
@@ -20,6 +21,7 @@ def run(text):
     ctx["reports"].append(stage5(ctx))
     ctx["reports"].append(stage6(ctx))
     ctx["reports"].append(stage7(ctx))
+    ctx["reports"].append(stage8(ctx))
     ctx.pop("text",None)
     ctx["reasons"]=reason_counts(ctx)
     return plain(ctx)

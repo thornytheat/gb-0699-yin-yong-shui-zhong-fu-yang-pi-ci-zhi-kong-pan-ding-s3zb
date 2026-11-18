@@ -25,6 +25,7 @@ docker compose config --quiet
 - M5 空白污染：`/module/5`，独立计算 `POST /api/5`。
 - M6 批次放行：`/module/6`，独立计算 `POST /api/6`。
 - M7 复测追踪：`/module/7`，独立计算 `POST /api/7`。
+- M8 污染更正：`/module/8`，共享空白超标后 `POST /api/8/correction` 生成关联各批次更正单，`POST /api/8/retry` 断点续跑。原回执保留不可覆盖，更正完成前放行暂停。
 
 ## 输入与输出
 

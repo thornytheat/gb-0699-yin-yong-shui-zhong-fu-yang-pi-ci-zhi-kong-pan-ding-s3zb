@@ -14,6 +14,7 @@
 | M5 空白污染 | 运行空白污染并核对证据 | `POST /api/5` | `app/modules/m5_blanks/rules.py` | `tests/test_blanks.py` |
 | M6 批次放行 | 运行批次放行并核对证据 | `POST /api/6` | `app/modules/m6_release/rules.py` | `tests/test_release.py` |
 | M7 复测追踪 | 运行复测追踪并核对证据 | `POST /api/7` | `app/modules/m7_retest/rules.py` | `tests/test_retest.py` |
+| M8 污染更正 | 共享空白超标后生成更正单、暂停放行、断点续跑 | `POST /api/8/correction` | `app/modules/m8_correction/service.py` | `tests/test_correction.py` |
 
 ## 陷阱登记
 
@@ -27,6 +28,7 @@
 | TRAP-15 | ug与mg | 静默采信错误值 | 统一mg/L | `app/modules/m2_contract/rules.py` | `tests/test_contract.py::test_contract_unit` |
 | TRAP-19 | 多质控失败 | 静默采信错误值 | 明确优先级 | `app/modules/m6_release/rules.py` | `tests/test_release.py::test_release_priority` |
 | TRAP-26 | 陈旧复测 | 静默采信错误值 | 版本递增 | `app/modules/m7_retest/rules.py` | `tests/test_retest.py::test_retest_stale` |
+| TRAP-31 | 共享空白污染 | 覆盖原回执、重复建单、失败后从头重跑 | 原回执快照不可变；按运行唯一建单；resume_cursor 从最后确认批次续跑，重试同一空白不新增更正 | `app/modules/m8_correction/service.py` | `tests/test_correction.py` |
 
 ## 对账规则
 
